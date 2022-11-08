@@ -89,5 +89,7 @@ struct ContentView_Previews: PreviewProvider {
             .previewDevice("iPhone 13 Pro")
         ContentView()
             .previewDevice("iPhone 8")
+        ContentView()
+            .previewDevice("iPad Pro (12.9-inch) (5th generation)")
     }
 }
