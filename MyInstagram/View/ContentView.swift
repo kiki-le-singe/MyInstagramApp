@@ -34,39 +34,39 @@ struct ContentView: View {
                     Image(systemName: "person.crop.circle")
                 }.tag(4)
             }
-            .foregroundColor(Color("TextColorScheme"))
+            .foregroundColor(Settings.textColorScheme)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color("BackgroundColorScheme"))
+            .background(Settings.backgroundColorScheme)
 //            .toolbar(.visible, for: .tabBar)
-//            .toolbarBackground(Color("BackgroundColorScheme"), for: .tabBar)
+//            .toolbarBackground(Settings.backgroundColorScheme, for: .tabBar)
         })
-        .accentColor(Color("TextColorScheme"))
+        .accentColor(Settings.textColorScheme)
         .onAppear() {
 //            let appearance = UITabBar.appearance()
             // TabBar color
-//            appearance.backgroundColor = UIColor(Color("BackgroundColorScheme"))
+//            appearance.backgroundColor = UIColor(Settings.backgroundColorScheme)
 //            appearance.backgroundColor = UIColor.black
 //            appearance.backgroundColor = UIColor(Color.black.opacity(0.5))
             // Unselected Tab Item color
-//            appearance.unselectedItemTintColor = UIColor(Color("TextColorScheme").opacity(0.9))
+//            appearance.unselectedItemTintColor = UIColor(Settings.textColorScheme.opacity(0.9))
 //            appearance.unselectedItemTintColor = UIColor.white
     //        appearance.isOpaque = false
             
             
-//                        UITabBar.appearance().unselectedItemTintColor = UIColor(Color("TextColorScheme").opacity(1))
+//                        UITabBar.appearance().unselectedItemTintColor = UIColor(Settings.textColorScheme.opacity(1))
             
             // https://stackoverflow.com/questions/60038183/ios13-uitabbar-tintcolor-for-unselecteditem-not-working
             let tabBar = UITabBar.appearance()
             let tabBarAppearance = UITabBarAppearance()
             
-            tabBarAppearance.shadowColor = UIColor(Color("TextColorScheme"))
-            tabBarAppearance.backgroundColor = UIColor(Color("BackgroundColorScheme"))
-            tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor(Color("TextColorScheme").opacity(0.8))
+            tabBarAppearance.shadowColor = UIColor(Settings.textColorScheme)
+            tabBarAppearance.backgroundColor = UIColor(Settings.backgroundColorScheme)
+            tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor(Settings.textColorScheme.opacity(0.8))
 
             tabBar.standardAppearance = tabBarAppearance
             tabBar.scrollEdgeAppearance = tabBarAppearance
 
-//            UITabBar.appearance().unselectedItemTintColor = UIColor(Color("TextColorScheme").opacity(1))
+//            UITabBar.appearance().unselectedItemTintColor = UIColor(Settings.textColorScheme.opacity(1))
         }
          
 //        .onAppear {

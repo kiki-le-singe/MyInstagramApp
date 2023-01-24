@@ -35,10 +35,10 @@ struct HomeView: View {
                             }
                     } label: {
                         HStack {
-                            Text("My Instagram").foregroundColor(Color("TextColorScheme"))
+                            Text("My Instagram").foregroundColor(Settings.textColorScheme)
                             Image(systemName: "arrow.down")
                         }
-                    }.foregroundColor(Color("TextColorScheme"))
+                    }.foregroundColor(Settings.textColorScheme)
                 }),
                 trailing:
                     HStack(content: {
@@ -52,7 +52,7 @@ struct HomeView: View {
                             Image(systemName: "paperplane")
                         })
                                        
-                    }).foregroundColor(Color("TextColorScheme"))
+                    }).foregroundColor(Settings.textColorScheme)
 
             )
         }
