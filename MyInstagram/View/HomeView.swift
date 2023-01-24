@@ -11,7 +11,7 @@ struct HomeView: View {
     var colors: [Color] = [.red, .blue, .green, .gray, .pink, .yellow, .orange, .purple]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 20, content: {
                     ForEach(colors, id: \.self) { color in
