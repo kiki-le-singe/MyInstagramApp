@@ -64,8 +64,13 @@ struct HomeView: View {
                             }
                     } label: {
                         HStack {
-                            Text("My Instagram").foregroundColor(Settings.textColorScheme)
-                            Image(systemName: "arrow.down")
+                            Image("Logo")
+                            
+                            AdaptiveView {
+                                Image("ArrowDown").padding(.bottom, 12)
+                            } darkView: {
+                                Image("ArrowDown").padding(.bottom, 18)
+                            }
                         }
                     }.foregroundColor(Settings.textColorScheme)
                 }),
