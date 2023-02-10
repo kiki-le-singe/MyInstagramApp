@@ -36,7 +36,7 @@ struct HomeView: View {
 //                    LazyHStack(spacing: 12) {
                     HStack(spacing: 12) {
                         ForEach(avatars, id: \.self) { user in
-                            StoryItemView(avatar: user.avatar, nickname: user.nickname ?? "")
+                            StoryView(avatar: user.avatar, nickname: user.nickname ?? "")
                         }
                     }
                     .padding(8)
