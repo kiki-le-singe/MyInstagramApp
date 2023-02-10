@@ -39,8 +39,8 @@ struct HomeView: View {
                             StoryItemView(avatar: user.avatar, nickname: user.nickname ?? "")
                         }
                     }
+                    .padding(8)
                 }
-                .padding(8)
                 
                 VStack(spacing: 20, content: {
                     ForEach(colors, id: \.self) { color in
