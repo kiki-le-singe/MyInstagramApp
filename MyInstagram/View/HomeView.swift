@@ -42,6 +42,10 @@ struct HomeView: View {
                     .padding([.horizontal, .top], 8)
                 }
                 
+                Divider()
+                
+                PostHeaderView(avatar: "image_2", nickname: "monkey_1")
+                
                 VStack(spacing: 20, content: {
                     ForEach(colors, id: \.self) { color in
                         color.frame(height: 200).cornerRadius(20)
