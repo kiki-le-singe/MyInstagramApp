@@ -39,7 +39,7 @@ struct HomeView: View {
                             StoryView(avatar: user.avatar, nickname: user.nickname ?? "")
                         }
                     }
-                    .padding(8)
+                    .padding([.horizontal, .top], 8)
                 }
                 
                 VStack(spacing: 20, content: {
