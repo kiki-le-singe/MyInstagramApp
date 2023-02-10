@@ -29,7 +29,7 @@ struct StoryView: View {
                 }
                 
                 Text(nickname)
-                    .font(.system(size: 11.5))
+                    .font(.system(size: Settings.nicknameSize))
                     .foregroundColor(Settings.textColorScheme)
             }
         }
