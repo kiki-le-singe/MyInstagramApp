@@ -10,23 +10,47 @@ import SwiftUI
 struct StoryView: View {
     @State var avatar: String
     @State var nickname: String = ""
+    @State var scale: CGFloat = 1
+    @State var degrees: Double = 0
+    @State var isAnimationEnded: Bool = false
 
     var body: some View {
             VStack {
-                Button(action: {
-                    print("coucou")
-                }) {
-                    Image(avatar)
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .cornerRadius(60)
-                        .overlay(
-                            Circle()
-                                .stroke(LinearGradient(colors: [.purple, .red,.orange,.yellow], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2.5)
-                                .frame(width: 68, height: 68)
-                        )
-                            .padding(6)
-                }
+                Image(avatar)
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .cornerRadius(60)
+                    .overlay(
+                        Circle()
+                            .stroke(LinearGradient(colors: [.purple, .red,.orange,.yellow], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2.5)
+                            .frame(width: 68, height: 68)
+                            .rotationEffect(.degrees(degrees))
+                    )
+                    .padding(6)
+                    .scaleEffect(scale)
+                    .onTapGesture {
+                        DispatchQueue.main.async {
+                            withAnimation(
+                                .spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)
+                            ) {
+                                self.isAnimationEnded.toggle()
+                                self.scale = 0.5
+                                self.degrees = 360
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation(
+                                .spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)
+                            ) {
+                                self.scale = 1
+                                self.degrees = 0
+                                self.isAnimationEnded.toggle()
+                            }
+                        }
+                    }
+//                    .onLongPressGesture {
+//                        print("Display ActionSheet")
+//                    }
                 
                 Text(nickname)
                     .font(.system(size: Settings.nicknameSize))
