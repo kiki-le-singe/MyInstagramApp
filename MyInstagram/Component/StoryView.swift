@@ -10,10 +10,16 @@ import SwiftUI
 struct StoryView: View {
     @State var avatar: String
     @State var nickname: String = ""
-    @State var scale: CGFloat = 1
     @State var degrees: Double = 0
-    @State var isAnimationEnded: Bool = false
+    @StateObject var animations = Animations()
 
+    func firstActions () {
+        self.degrees = 360
+    }
+    func secondActions () {
+        self.degrees = 0
+    }
+    
     var body: some View {
             VStack {
                 Image(avatar)
@@ -27,26 +33,12 @@ struct StoryView: View {
                             .rotationEffect(.degrees(degrees))
                     )
                     .padding(6)
-                    .scaleEffect(scale)
+                    .scaleEffect(animations.scale)
                     .onTapGesture {
-                        DispatchQueue.main.async {
-                            withAnimation(
-                                .spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)
-                            ) {
-                                self.isAnimationEnded.toggle()
-                                self.scale = 0.5
-                                self.degrees = 360
-                            }
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            withAnimation(
-                                .spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)
-                            ) {
-                                self.scale = 1
-                                self.degrees = 0
-                                self.isAnimationEnded.toggle()
-                            }
-                        }
+                        animations.scaleEffect(
+                            firstActions: firstActions,
+                            secondActions: secondActions
+                        )
                     }
 //                    .onLongPressGesture {
 //                        print("Display ActionSheet")
