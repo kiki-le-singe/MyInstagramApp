@@ -34,6 +34,7 @@ struct HomeView: View {
         User(firstname: "Monkey 1", lastname: "Monkey", nickname: "monkey_5", age: 1, gender: .female, avatar: "image_5"),
         User(firstname: "Monkey 1", lastname: "Monkey", nickname: "monkey_6", age: 3, gender: .female, avatar: "image_6"),
     ]
+    let images: [String] = ["image_2", "image_9", "image_3", "image_5", "image_0", "image_4", "image_8", "image_1", "image_6", "image_7"]
     
     var body: some View {
         NavigationStack {
@@ -52,6 +53,8 @@ struct HomeView: View {
                 Divider()
                 
                 PostHeaderView(avatar: "image_2", nickname: "monkey_1")
+                
+                PostSwiperView(images: images)
                 
                 VStack(spacing: 20, content: {
                     ForEach(colors, id: \.self) { color in
