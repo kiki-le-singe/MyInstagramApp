@@ -9,7 +9,10 @@ import SwiftUI
 
 struct PostSwiperView: View {
     @State var selection = 0
+    @State var offsetY: CGFloat = 0
+    @State var offsetX: CGFloat = 0
     let images: [String]
+    let frameWidth: CGFloat = 56
 
     var body: some View {
         VStack {
@@ -24,6 +27,9 @@ struct PostSwiperView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(height: 300)
+            .onChange(of: selection, perform: { index in
+                print("coucou")
+            })
 
             HStack(spacing: 6) {
                 ForEach(0..<images.count, id: \.self) { index in
@@ -32,7 +38,14 @@ struct PostSwiperView: View {
                         .frame(width: 8, height: 8)
                 }
             }
+            .offset(x: offsetX, y: offsetY)
+            .frame(width: frameWidth, height: 8)
+            .border(Color.red)
+            .clipped()
 
+        }
+        .onAppear {
+            offsetX = self.frameWidth - 16
         }
     }
 }
