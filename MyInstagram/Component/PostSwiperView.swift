@@ -9,12 +9,19 @@ import SwiftUI
 
 struct PostSwiperView: View {
     @State var selection = 0
-//    @State var offsetY: CGFloat = 0
-//    @State var offsetX: CGFloat = 0
+    @State var previousSelection = 0
+    @State var offsetY: CGFloat = 0
+    @State var offsetX: CGFloat = 0
+    
     let images: [String]
-//    let frameWidth: CGFloat = 56
+    let frameWidth: CGFloat = 58
+    let circleSize: CGFloat = 6
+    let spacingBetweenCircles: CGFloat = 6
 
     var body: some View {
+        let imagesCount: Int = images.count
+        let animationOffsetX: CGFloat = circleSize + spacingBetweenCircles
+
         VStack {
             TabView(selection: $selection) {
                 ForEach(Array(images.enumerated()), id: \.element) { index, image in
@@ -27,26 +34,38 @@ struct PostSwiperView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(height: 300)
-//            .onChange(of: selection, perform: { index in
-//                print("coucou")
-//            })
-
-            HStack(spacing: 6) {
-                ForEach(0..<images.count, id: \.self) { index in
+            .onChange(of: selection, perform: { newSelection in
+                if (imagesCount > 5) {
+                    if newSelection > previousSelection {
+                        if newSelection >= 4 {
+                            // swiped to the right
+                            withAnimation {
+                                self.offsetX -= animationOffsetX
+                            }
+                        }
+                    } else if newSelection < previousSelection {
+                        if newSelection >= 3 {
+                            // swiped to the left
+                            withAnimation {
+                                self.offsetX += animationOffsetX
+                            }
+                        }
+                    }
+                    previousSelection = newSelection
+                }
+            })
+            
+            HStack(spacing: spacingBetweenCircles) {
+                ForEach(0..<imagesCount, id: \.self) { index in
                     Circle()
                         .fill(selection == index ? Color.blue : Color.gray)
-                        .frame(width: 8, height: 8)
+                        .frame(width: circleSize, height: circleSize)
                 }
             }
-//            .offset(x: offsetX, y: offsetY)
-//            .frame(width: frameWidth, height: 8)
-//            .border(Color.red)
-//            .clipped()
-
+            .offset(x: offsetX, y: offsetY)
+            .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
+            .clipped()
         }
-//        .onAppear {
-//            offsetX = self.frameWidth - 16
-//        }
     }
 }
 
