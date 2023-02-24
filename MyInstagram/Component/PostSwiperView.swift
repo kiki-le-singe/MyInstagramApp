@@ -37,9 +37,10 @@ struct PostSwiperView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(height: 300)
             .onChange(of: selection, perform: { newSelection in
+                
+                currentSelection = newSelection
+                
                 if (imagesCount > 5) {
-                    currentSelection = newSelection
-                    
                     if newSelection > previousSelection {
                         if newSelection >= 4 {
                             // swiped to the right
