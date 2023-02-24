@@ -14,7 +14,7 @@ struct PostSwiperView: View {
     @State var offsetY: CGFloat = 0
     @State var offsetX: CGFloat = 0
     @State var circleSize: CGFloat = 6.5
-    @State var currentCircleSize: CGFloat = 7.5
+    @State var currentCircleSize: CGFloat = 8
     
     let images: [String]
     let frameWidth: CGFloat = 47
