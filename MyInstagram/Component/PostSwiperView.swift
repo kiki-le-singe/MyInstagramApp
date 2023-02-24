@@ -10,13 +10,15 @@ import SwiftUI
 struct PostSwiperView: View {
     @State var selection = 0
     @State var previousSelection = 0
+    @State var currentSelection = 0
     @State var offsetY: CGFloat = 0
     @State var offsetX: CGFloat = 0
+    @State var circleSize: CGFloat = 6.5
+    @State var currentCircleSize: CGFloat = 7.5
     
     let images: [String]
-    let frameWidth: CGFloat = 58
-    let circleSize: CGFloat = 6
-    let spacingBetweenCircles: CGFloat = 6
+    let frameWidth: CGFloat = 47
+    let spacingBetweenCircles: CGFloat = 3
 
     var body: some View {
         let imagesCount: Int = images.count
@@ -36,6 +38,8 @@ struct PostSwiperView: View {
             .frame(height: 300)
             .onChange(of: selection, perform: { newSelection in
                 if (imagesCount > 5) {
+                    currentSelection = newSelection
+                    
                     if newSelection > previousSelection {
                         if newSelection >= 4 {
                             // swiped to the right
@@ -59,7 +63,8 @@ struct PostSwiperView: View {
                 ForEach(0..<imagesCount, id: \.self) { index in
                     Circle()
                         .fill(selection == index ? Color.blue : Color.gray)
-                        .frame(width: circleSize, height: circleSize)
+                        .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
+                        .animation(.spring(), value: currentSelection)
                 }
             }
             .offset(x: offsetX, y: offsetY)
