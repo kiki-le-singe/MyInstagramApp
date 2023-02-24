@@ -60,17 +60,34 @@ struct PostSwiperView: View {
                 }
             })
             
-            HStack(spacing: spacingBetweenCircles) {
-                ForEach(0..<imagesCount, id: \.self) { index in
-                    Circle()
-                        .fill(selection == index ? Color.blue : Color.gray)
-                        .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
-                        .animation(.spring(), value: currentSelection)
+            HStack {
+                HStack(spacing: 12) {
+                    Image(systemName: "heart")
+                    Image(systemName: "message")
+                    Image(systemName: "paperplane")
                 }
+                
+                Spacer()
+                
+                HStack(spacing: spacingBetweenCircles) {
+                    ForEach(0..<imagesCount, id: \.self) { index in
+                        Circle()
+                            .fill(selection == index ? Color.blue : Color.gray)
+                            .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
+                            .animation(.spring(), value: currentSelection)
+                    }
+                }
+                .offset(x: offsetX, y: offsetY)
+                .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
+                .clipped()
+
+                Spacer()
+                Spacer()
+                
+                Image(systemName: "bookmark")
             }
-            .offset(x: offsetX, y: offsetY)
-            .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
-            .clipped()
+            .padding(.top, 2)
+            .padding(.horizontal, 12)
         }
     }
 }
