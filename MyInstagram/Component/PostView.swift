@@ -1,5 +1,5 @@
 //
-//  PostSwiperView.swift
+//  PostView.swift
 //  MyInstagram
 //
 //  Created by Anthony Albertini on 16/02/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostSwiperView: View {
+struct PostView: View {
     @State var selection = 0
     @State var previousSelection = 0
     @State var currentSelection = 0
@@ -63,12 +63,12 @@ struct PostSwiperView: View {
     }
 }
 
-struct PostSwiperView_Previews: PreviewProvider {
+struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         let images: [String] = ["image_2", "image_9", "image_3", "image_5", "image_0", "image_4", "image_8", "image_1", "image_6", "image_7"]
 
-        PostSwiperView(images: images)
-        PostSwiperView(images: images)
+        PostView(images: images)
+        PostView(images: images)
             .previewDevice("iPhone 8")
     }
 }
