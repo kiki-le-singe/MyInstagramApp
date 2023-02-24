@@ -80,5 +80,7 @@ struct PostSwiperView_Previews: PreviewProvider {
         let images: [String] = ["image_2", "image_9", "image_3", "image_5", "image_0", "image_4", "image_8", "image_1", "image_6", "image_7"]
 
         PostSwiperView(images: images)
+        PostSwiperView(images: images)
+            .previewDevice("iPhone 8")
     }
 }

@@ -112,5 +112,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
         HomeView()
             .previewDevice("iPad Pro (12.9-inch) (6th generation)")
+        HomeView()
+            .previewDevice("iPhone 8")
     }
 }
