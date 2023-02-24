@@ -13,10 +13,32 @@
 import Foundation
 import SwiftUI
 
+//extension View {
+//    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+//        if condition {
+//            transform(self)
+//        } else {
+//            self
+//        }
+//    }
+//}
+
+
+// https://matteo-puccinelli.medium.com/conditionally-apply-modifiers-in-swiftui-51c1cf7f61d1
 extension View {
-    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+    @ViewBuilder
+    func ifCondition<TrueContent: View, FalseContent: View>(_ condition: Bool, then trueContent: (Self) -> TrueContent, else falseContent: (Self) -> FalseContent) -> some View {
         if condition {
-            transform(self)
+            trueContent(self)
+        } else {
+            falseContent(self)
+        }
+    }
+
+    @ViewBuilder
+    func ifCondition<TrueContent: View>(_ condition: Bool, then trueContent: (Self) -> TrueContent) -> some View {
+        if condition {
+            trueContent(self)
         } else {
             self
         }
