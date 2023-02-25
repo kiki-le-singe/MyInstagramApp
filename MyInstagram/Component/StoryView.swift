@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct StoryView: View {
-    @State var avatar: String
-    @State var nickname: String = ""
-    @State var degrees: Double = 0
+    @State private var degrees: Double = 0
     @StateObject var animations = Animations()
+    var avatar: String
+    var nickname: String = ""
 
     func firstActions () {
         self.degrees = 360

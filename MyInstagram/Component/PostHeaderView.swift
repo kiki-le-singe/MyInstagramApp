@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PostHeaderView: View {
-    @State var avatar: String
-    @State var nickname: String = ""
+    var avatar: String
+    var nickname: String = ""
 
     var body: some View {
         HStack(spacing: 8) {

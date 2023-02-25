@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PostView: View {
-    @State var selection = 0
-    @State var previousSelection = 0
-    @State var currentSelection = 0
-    @State var offsetY: CGFloat = 0
-    @State var offsetX: CGFloat = 0
+    @State private var selection = 0
+    @State private var previousSelection = 0
+    @State private var currentSelection = 0
+    @State private var offsetY: CGFloat = 0
+    @State private var offsetX: CGFloat = 0
     
     let circleSize: CGFloat = 6.5
     let images: [String]
