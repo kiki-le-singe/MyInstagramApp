@@ -21,9 +21,9 @@ struct PostFooterView: View {
     var body: some View {
         HStack {
             HStack(spacing: 12) {
-                Image(systemName: "heart")
-                Image(systemName: "message")
-                Image(systemName: "paperplane")
+                PostFooterIconView(icon: "heart", foregroundColor: Color.red)
+                PostFooterIconView(icon: "message")
+                PostFooterIconView(icon: "paperplane")
             }
             
             Spacer()
@@ -44,8 +44,8 @@ struct PostFooterView: View {
                 Spacer()
                 Spacer()
             }
-            
-            Image(systemName: "bookmark")
+
+            PostFooterIconView(icon: "bookmark")
         }
         .padding(.top, 2)
         .padding(.horizontal, 12)
