@@ -15,7 +15,9 @@ struct PostView: View {
     @State private var offsetX: CGFloat = 0
     
     let circleSize: CGFloat = 6.5
-    let images: [String]
+    // @TODO: uncomment when the data will come from the API
+//    let images: [String]
+    @State var images: [String]
     let spacingBetweenCircles: CGFloat = 3
 
     var body: some View {
@@ -59,6 +61,9 @@ struct PostView: View {
             })
 
             PostFooterView(spacingBetweenCircles: spacingBetweenCircles, imagesCount: imagesCount, selection: selection, currentSelection: currentSelection, circleSize: circleSize, offsetY: offsetY, offsetX: offsetX)
+        }
+        .onAppear() { // @TODO: remove when the data will come from the API
+            self.images = images.shuffled()
         }
     }
 }
