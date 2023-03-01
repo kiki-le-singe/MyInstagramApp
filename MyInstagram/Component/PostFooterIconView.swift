@@ -13,7 +13,7 @@ struct PostFooterIconView: View {
     @State private var isFilled = false
     let icon: String
     var foregroundColor: Color? = nil
-    var callback: (() -> Void)? = nil
+    var callbackWithAnimation: ((_ _isFilled: Bool) -> Void)? = nil
 
     var body: some View {
         let defaultForegroundColor: Color = colorScheme == .dark ? .white : .black
@@ -25,8 +25,8 @@ struct PostFooterIconView: View {
                 
                 withAnimation {
                     self.isFilled.toggle()
-                    
-                    callback?()
+
+                    callbackWithAnimation?(isFilled)
                 }
             }
             .foregroundColor(isFilled && foregroundColor != nil ? foregroundColor : defaultForegroundColor)

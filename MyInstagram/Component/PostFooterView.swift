@@ -28,7 +28,7 @@ struct PostFooterView: View {
         VStack {
             HStack {
                 HStack(spacing: 12) {
-                    PostFooterIconView(icon: "heart", foregroundColor: Color.red, callback: animateCountLikeText)
+                    PostFooterIconView(icon: "heart", foregroundColor: Color.red, callbackWithAnimation: animateCountLikeText)
                     PostFooterIconView(icon: "message")
                     PostFooterIconView(icon: "paperplane")
                 }
