@@ -54,7 +54,10 @@ struct HomeView: View {
                 
                 PostHeaderView(avatar: "image_2", nickname: "monkey_1")
                 
-                PostSwiperView(images: images)
+
+                PostView(images: images)
+                PostView(images: images)
+                PostView(images: images)
                 
                 VStack(spacing: 20, content: {
                     ForEach(colors, id: \.self) { color in
