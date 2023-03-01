@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PostFooterView: View {
     @StateObject var animations = Animations()
-    let randomCountLike = 1...1000
+    @State var countLikes = 0
     let spacingBetweenCircles: CGFloat
     let imagesCount: Int
     let selection: Int
@@ -20,7 +20,12 @@ struct PostFooterView: View {
     let offsetX: CGFloat
     let frameWidth: CGFloat = 47
 
-    func animateCountLikeText () {
+    func animateCountLikeText (_ isFilled: Bool) {
+        if (isFilled) {
+            self.countLikes += 1
+        } else {
+            self.countLikes -= 1
+        }
         animations.scaleEffect()
     }
     
@@ -56,15 +61,11 @@ struct PostFooterView: View {
             }
             .padding(.top, 2)
             
-            HStack {
-                // How to generate random numbers in Swift:
-                // https://www.hackingwithswift.com/articles/102/how-to-generate-random-numbers-in-swift
-                if let countLike = randomCountLike.randomElement() {
-                    Text("\(countLike) Likes")
-                        .foregroundColor(Settings.textColorScheme)
-                        .font(.system(size: 13, weight: .semibold))
-                        .scaleEffect(animations.scale)
-                }
+            HStack {                
+                Text("\(countLikes) Likes")
+                    .foregroundColor(Settings.textColorScheme)
+                    .font(.system(size: 13, weight: .semibold))
+                    .scaleEffect(animations.scale)
                 
                 Spacer()
             }
