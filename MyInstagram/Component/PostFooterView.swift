@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PostFooterView: View {
+    @StateObject var animations = Animations()
+    let randomCountLike = 1...1000
     let spacingBetweenCircles: CGFloat
     let imagesCount: Int
     let selection: Int
@@ -18,36 +20,55 @@ struct PostFooterView: View {
     let offsetX: CGFloat
     let frameWidth: CGFloat = 47
 
+    func animateCountLikeText () {
+        animations.scaleEffect()
+    }
+    
     var body: some View {
-        HStack {
-            HStack(spacing: 12) {
-                PostFooterIconView(icon: "heart", foregroundColor: Color.red)
-                PostFooterIconView(icon: "message")
-                PostFooterIconView(icon: "paperplane")
-            }
-            
-            Spacer()
-            
-            if (imagesCount > 1){
-                HStack(spacing: spacingBetweenCircles) {
-                    ForEach(0..<imagesCount, id: \.self) { index in
-                        Circle()
-                            .fill(selection == index ? Color.blue : Color.gray)
-                            .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
-                            .animation(.spring(), value: currentSelection)
-                    }
+        VStack {
+            HStack {
+                HStack(spacing: 12) {
+                    PostFooterIconView(icon: "heart", foregroundColor: Color.red, callback: animateCountLikeText)
+                    PostFooterIconView(icon: "message")
+                    PostFooterIconView(icon: "paperplane")
                 }
-                .offset(x: offsetX, y: offsetY)
-                .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
-                .clipped()
                 
                 Spacer()
+                
+                if (imagesCount > 1){
+                    HStack(spacing: spacingBetweenCircles) {
+                        ForEach(0..<imagesCount, id: \.self) { index in
+                            Circle()
+                                .fill(selection == index ? Color.blue : Color.gray)
+                                .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
+                                .animation(.spring(), value: currentSelection)
+                        }
+                    }
+                    .offset(x: offsetX, y: offsetY)
+                    .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
+                    .clipped()
+                    
+                    Spacer()
+                    Spacer()
+                }
+
+                PostFooterIconView(icon: "bookmark")
+            }
+            .padding(.top, 2)
+            
+            HStack {
+                // How to generate random numbers in Swift:
+                // https://www.hackingwithswift.com/articles/102/how-to-generate-random-numbers-in-swift
+                if let countLike = randomCountLike.randomElement() {
+                    Text("\(countLike) Likes")
+                        .foregroundColor(Settings.textColorScheme)
+                        .font(.system(size: 13, weight: .semibold))
+                        .scaleEffect(animations.scale)
+                }
+                
                 Spacer()
             }
-
-            PostFooterIconView(icon: "bookmark")
         }
-        .padding(.top, 2)
         .padding(.horizontal, 12)
     }
 }
