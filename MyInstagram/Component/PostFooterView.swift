@@ -20,6 +20,7 @@ struct PostFooterView: View {
     let offsetY: CGFloat
     let offsetX: CGFloat
     let frameWidth: CGFloat = 47
+    let commentsCount = 0...500000
 
     func animateCountLikeText (_ isFilled: Bool) {
         if (isFilled) {
@@ -95,8 +96,12 @@ struct PostFooterView: View {
                     Spacer()
                 }
                 
+                    HStack {
+                        if let randomCommentsCount = commentsCount.randomElement() {
+                            Text("View all \(randomCommentsCount.formattedWithSeparator) comments")
+                               .foregroundColor(.gray)
+                               .font(.system(size: 12, weight: .light))
                         }
-                        .foregroundColor(Settings.textColorScheme)
                         
                         Spacer()
                     }
