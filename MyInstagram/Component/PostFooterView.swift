@@ -10,6 +10,7 @@ import SwiftUI
 struct PostFooterView: View {
     @StateObject var animations = Animations()
     @State var countLikes = 0
+    @State var isDescExpanded = false
     let spacingBetweenCircles: CGFloat
     let imagesCount: Int
     let selection: Int
@@ -30,47 +31,71 @@ struct PostFooterView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                HStack(spacing: 12) {
-                    PostFooterIconView(icon: "heart", foregroundColor: Color.red, callbackWithAnimation: animateCountLikeText)
-                    PostFooterIconView(icon: "message")
-                    PostFooterIconView(icon: "paperplane")
-                }
-                
-                Spacer()
-                
-                if (imagesCount > 1){
-                    HStack(spacing: spacingBetweenCircles) {
-                        ForEach(0..<imagesCount, id: \.self) { index in
-                            Circle()
-                                .fill(selection == index ? Color.blue : Color.gray)
-                                .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
-                                .animation(.spring(), value: currentSelection)
-                        }
+            let shortDesc: LocalizedStringKey = "Lorem [#ipsum](https://www.instagram.com/) dolor [#sit](https://www.instagram.com/) amet, cons... "
+            let longDesc: LocalizedStringKey = "Lorem [#ipsum](https://www.instagram.com/) dolor [#sit](https://www.instagram.com/) amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+            VStack(spacing: 5) {
+                HStack {
+                    HStack(spacing: 12) {
+                        PostFooterIconView(icon: "heart", foregroundColor: Color.red, callbackWithAnimation: animateCountLikeText)
+                        PostFooterIconView(icon: "message")
+                        PostFooterIconView(icon: "paperplane")
                     }
-                    .offset(x: offsetX, y: offsetY)
-                    .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
-                    .clipped()
-                    
+
                     Spacer()
+
+                    if (imagesCount > 1){
+                        HStack(spacing: spacingBetweenCircles) {
+                            ForEach(0..<imagesCount, id: \.self) { index in
+                                Circle()
+                                    .fill(selection == index ? Color.blue : Color.gray)
+                                    .frame(width: currentSelection == index ? currentCircleSize : circleSize, height: currentSelection == index ? currentCircleSize : circleSize)
+                                    .animation(.spring(), value: currentSelection)
+                            }
+                        }
+                        .offset(x: offsetX, y: offsetY)
+                        .frame(width: frameWidth, alignment: imagesCount >= 5 ? .topLeading : .center)
+                        .clipped()
+
+                        Spacer()
+                        Spacer() // @TODO remove it for iPad display
+                    }
+
+                    PostFooterIconView(icon: "bookmark")
+                }
+                .padding(.top, 2)
+
+                HStack {
+                    Text("\(countLikes) Likes")
+                        .foregroundColor(Settings.textColorScheme)
+                        .font(.system(size: 13, weight: .semibold))
+                        .scaleEffect(animations.scale)
+
                     Spacer()
                 }
 
-                PostFooterIconView(icon: "bookmark")
+                HStack(alignment: .top, spacing: 0) {
+                        Group {
+                            Text("Username ")
+                                .font(.system(size: 14, weight: .semibold))
+                            + Text(isDescExpanded ? longDesc : shortDesc)
+                                .font(.system(size: 14, weight: .light))
+                            + Text(isDescExpanded ? "" : "more")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 13, weight: .light))
+                        }
+                        .onTapGesture() {
+                            withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)) {
+                                isDescExpanded = true
+                            }
+                        }
+                        .foregroundColor(Settings.textColorScheme)
+                        
+                        Spacer()
+                    }
+
             }
-            .padding(.top, 2)
-            
-            HStack {                
-                Text("\(countLikes) Likes")
-                    .foregroundColor(Settings.textColorScheme)
-                    .font(.system(size: 13, weight: .semibold))
-                    .scaleEffect(animations.scale)
-                
-                Spacer()
-            }
-        }
-        .padding(.horizontal, 12)
+            .padding(.horizontal, 12)
     }
 }
 
