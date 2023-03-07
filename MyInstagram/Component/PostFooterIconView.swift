@@ -19,6 +19,7 @@ struct PostFooterIconView: View {
         let defaultForegroundColor: Color = colorScheme == .dark ? .white : .black
 
         Image(systemName: "\(icon)\(isFilled ? ".fill" : "")")
+            .font(.system(size: 24))
             .scaleEffect(animations.scale)
             .onTapGesture {
                 animations.scaleEffect()
