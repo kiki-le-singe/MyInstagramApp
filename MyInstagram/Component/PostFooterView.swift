@@ -75,19 +75,26 @@ struct PostFooterView: View {
                 }
 
                 HStack(alignment: .top, spacing: 0) {
-                        Group {
-                            Text("Username ")
-                                .font(.system(size: 14, weight: .semibold))
-                            + Text(isDescExpanded ? longDesc : shortDesc)
-                                .font(.system(size: 14, weight: .light))
-                            + Text(isDescExpanded ? "" : "more")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 13, weight: .light))
+                    Group {
+                        Text("Username ")
+                            .font(.system(size: 14, weight: .semibold))
+                        + Text(isDescExpanded ? longDesc : shortDesc)
+                            .font(.system(size: 14, weight: .light))
+                        + Text(isDescExpanded ? "" : "more")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 13, weight: .light))
+                    }
+                    .onTapGesture() {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)) {
+                            isDescExpanded = true
                         }
-                        .onTapGesture() {
-                            withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)) {
-                                isDescExpanded = true
-                            }
+                    }
+                    .tint(Color(red: 0, green: 0.298, blue: 0.545)) // #004C8B
+                    .foregroundColor(Settings.textColorScheme)
+                    
+                    Spacer()
+                }
+                
                         }
                         .foregroundColor(Settings.textColorScheme)
                         
