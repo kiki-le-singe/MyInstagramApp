@@ -105,6 +105,17 @@ struct PostFooterView: View {
                         
                         Spacer()
                     }
+                
+                HStack {
+                    Text("Add a comment...")
+                       .foregroundColor(.gray)
+                       .font(.system(size: 12, weight: .light))
+                       .onTapGesture() {
+                           print("Open Keyboard, then add a comment...")
+                       }
+                    
+                    Spacer()
+                }
 
             }
             .padding(.horizontal, 12)
