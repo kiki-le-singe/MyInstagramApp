@@ -32,9 +32,9 @@ struct PostFooterView: View {
     
     var body: some View {
             let shortDesc: LocalizedStringKey = "Lorem [#ipsum](https://www.instagram.com/) dolor [#sit](https://www.instagram.com/) amet, cons... "
-            let longDesc: LocalizedStringKey = "Lorem [#ipsum](https://www.instagram.com/) dolor [#sit](https://www.instagram.com/) amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-
-            VStack(spacing: 5) {
+            let longDesc: LocalizedStringKey = "Lorem [#ipsum](https://www.instagram.com/) dolor [#sit](https://www.instagram.com/) amet, consectetur adipiscing 😁 elit, 🎶 sed do eiusmod tempor 🤪 incididunt ut 🎶 labore et dolore 🥳 magna aliqua. 🐵🙈🙉🙊🐒"
+        
+            VStack(spacing: 6) {
                 HStack {
                     HStack(spacing: 12) {
                         PostFooterIconView(icon: "heart", foregroundColor: Color.red, callbackWithAnimation: animateCountLikeText)
