@@ -95,16 +95,18 @@ struct PostFooterView: View {
                     
                     Spacer()
                 }
-                
-                    HStack {
-                        if let randomCommentsCount = commentsCount.randomElement() {
+
+                if let randomCommentsCount = commentsCount.randomElement() {
+                    if randomCommentsCount > 0 {
+                        HStack {
                             Text("View all \(randomCommentsCount.formattedWithSeparator) comments")
                                .foregroundColor(.gray)
                                .font(.system(size: 12, weight: .light))
+                            
+                            Spacer()
                         }
-                        
-                        Spacer()
                     }
+                }
                 
                 HStack {
                     Text("Add a comment...")
