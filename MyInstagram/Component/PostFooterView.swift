@@ -90,7 +90,7 @@ struct PostFooterView: View {
                             isDescExpanded = true
                         }
                     }
-                    .tint(Color(red: 0, green: 0.298, blue: 0.545)) // #004C8B
+                    .tint(Color(red: 0, green: 0.298, blue: 0.545)) // #004C8B - https://iosref.com/uihex
                     .foregroundColor(Settings.textColorScheme)
                     
                     Spacer()
