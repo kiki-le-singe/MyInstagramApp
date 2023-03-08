@@ -59,7 +59,10 @@ struct PostFooterView: View {
                         .clipped()
 
                         Spacer()
-                        Spacer() // @TODO remove it for iPad display
+                        
+                        if Settings.isPhone(){
+                            Spacer()
+                        }
                     }
 
                     PostFooterIconView(icon: "bookmark")
