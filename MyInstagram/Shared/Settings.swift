@@ -14,4 +14,13 @@ class Settings {
     
     // Fonts
     static let nicknameSize = 11.5
+    
+    // User Interface
+    static var device : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    static func isPhone () -> Bool {
+        return self.device == .phone
+    }
+    static func isPad () -> Bool {
+        return self.device == .pad
+    }
 }
