@@ -35,7 +35,7 @@ struct PostView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .frame(height: 300)
+            .frame(height: Settings.isPhone() ? 300 : 800)
             .onChange(of: selection, perform: { newSelection in
                 
                 currentSelection = newSelection
@@ -73,6 +73,8 @@ struct PostView_Previews: PreviewProvider {
         let images: [String] = ["image_2", "image_9", "image_3", "image_5", "image_0", "image_4", "image_8", "image_1", "image_6", "image_7"]
 
         PostView(images: images)
+        PostView(images: images)
+            .previewDevice("iPad Pro (12.9-inch) (6th generation)")
         PostView(images: images)
             .previewDevice("iPhone 8")
     }
