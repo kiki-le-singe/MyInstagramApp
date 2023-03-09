@@ -25,6 +25,8 @@ struct PostView: View {
         let animationOffsetX: CGFloat = circleSize + spacingBetweenCircles
 
         VStack {
+            PostHeaderView(avatar: "image_2", nickname: "monkey_1")
+
             TabView(selection: $selection) {
                 ForEach(Array(images.enumerated()), id: \.element) { index, image in
                     Image(image)

@@ -51,9 +51,6 @@ struct HomeView: View {
                 }
                 
                 Divider()
-                
-                PostHeaderView(avatar: "image_2", nickname: "monkey_1")
-                
 
                 PostView(images: images)
                 PostView(images: images)
