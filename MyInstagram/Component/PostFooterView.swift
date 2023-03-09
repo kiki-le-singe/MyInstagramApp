@@ -102,9 +102,12 @@ struct PostFooterView: View {
                 if let randomCommentsCount = commentsCount.randomElement() {
                     if randomCommentsCount > 0 {
                         HStack {
-                            Text("View all \(randomCommentsCount.formattedWithSeparator) comments")
-                               .foregroundColor(.gray)
-                               .font(.system(size: 12, weight: .light))
+                            
+                            NavigationLink(destination: Text("This is the Comments View"), label: {
+                                Text("View all \(randomCommentsCount.formattedWithSeparator) comments")
+                                   .foregroundColor(.gray)
+                                   .font(.system(size: 12, weight: .light))
+                            })
                             
                             Spacer()
                         }
