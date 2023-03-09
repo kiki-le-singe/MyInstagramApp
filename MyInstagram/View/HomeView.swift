@@ -52,15 +52,18 @@ struct HomeView: View {
                 
                 Divider()
 
-                PostView(images: images)
-                PostView(images: images)
-                PostView(images: images)
-                
-                VStack(spacing: 20, content: {
-                    ForEach(colors, id: \.self) { color in
-                        color.frame(height: 200).cornerRadius(20)
-                    }
-                })
+                VStack(spacing: 20) {
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                    PostView(images: images)
+                }
             }
             .navigationBarItems(
                 leading: Button(action: {
